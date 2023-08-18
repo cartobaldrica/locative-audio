@@ -5,7 +5,7 @@
 //create layout for popup at each stop (less important)
 
 (function(){
-    let map, stops, locationMarker, circle, active = false, center = true, played = [], audio
+    let map, stops, locationMarker, circle, active = false, center = true, played = []
 
     //modal variables for stops
     let stop = document.getElementById('stop-modal'),
@@ -13,7 +13,7 @@
     
     function createMap(){
         map = L.map("map",{
-            center: [43.07,-89.39],
+            center: [43.08386938708114,-87.89021044302959],
             zoom:14,
             maxZoom:17,
             minZoom:12
@@ -177,19 +177,20 @@
     function openModal(props){
         //clear body
         document.querySelector("#stop-body").innerHTML = "";
+        document.querySelector("#title-container").innerHTML = "";
         //add title if title exists
         if (props.name){
-            document.querySelector("#stop-title").innerHTML = props.name;
+            let title = "<h1 class='modal-title' id='stop-title'>" + props.name + "</h1>";
+            document.querySelector("#title-container").insertAdjacentHTML("beforeend",title)
         }
         //add audio button if audio exists
         if (props.audio){
+            let button = "<button id='play-audio'>Play Audio</button>";
+            document.querySelector("#title-container").insertAdjacentHTML("beforeend",button)
             document.querySelector("#play-audio").addEventListener("click",function(){
                 if (active == false){
                     playAudio(props.audio)
                     document.querySelector("#play-audio").innerHTML = "Stop Audio";
-                }
-                else{
-                    stopAudio();
                 }
             })
         }
@@ -203,12 +204,7 @@
             let p = "<p id='stop-text'>" + props.text + "</p>";
             document.querySelector("#stop-body").insertAdjacentHTML("beforeend",p)
         }
-        //add listener to stop audio if modal is closed
-        document.querySelectorAll("#close").forEach(function(elem){
-            elem.addEventListener("click",function(){
-                stopAudio();
-            })
-        })
+
 
         stopModal.show();
     }
@@ -216,9 +212,10 @@
     function playAudio(audioFile){
         active = true;
         //create audio element
-        audio = document.createElement("audio"),
-        source = "<source src='audio/" + audioFile + "'>",
-        play = "<p class='play'>&#9654;</p>";
+        let audio = document.createElement("audio");
+
+        let source = "<source src='audio/" + audioFile + "'>",
+            play = "<p class='play'>&#9654;</p>";
         //add source 
         audio.insertAdjacentHTML("beforeend",source)
         //insert audio element into document
@@ -227,27 +224,39 @@
         //change button on modal
         document.querySelector("#play-audio").innerHTML = "Stop Audio";
         //play audio
-        audio.play();
+        audio.play().catch((e)=>{
+            console.log("error")
+         });
         //remove audio when finished
         audio.onended = function(){
             stopAudio();
             //hide modal
             stopModal.hide();
         }
-    }
-    //function to deactivate audio element and reset button
-    function stopAudio(){
-        //remove audio element
-        if (audio)
+        //add listener to stop audio if modal is closed
+        document.querySelectorAll("#close").forEach(function(elem){
+            elem.addEventListener("click",stopAudio)
+        })
+        //add listener to stop audio if the stop button is pressed
+        document.querySelector("#play-audio").addEventListener("click",stopAudio)
+        //function to deactivate audio element and reset button
+        function stopAudio(){
+            //remove audio element
+            audio.pause();
             audio.remove();
+            //reset audio buttons
+            document.querySelector("#play-audio").innerHTML = "Play Audio";               
+            document.querySelector("#play-audio").removeEventListener("click",stopAudio);
 
-        if (document.querySelector(".play"))
-            document.querySelector(".play").remove();
-        //set page state to inactive
-        active = false; 
-        //reset play button
-        document.querySelector("#play-audio").innerHTML = "Play Audio";
+            if (document.querySelector(".play"))
+                document.querySelector(".play").remove();
+            //set page state to inactive
+            active = false; 
+            //reset play button
+            document.querySelector("#play-audio").innerHTML = "Play Audio";
+        }
     }
+
 
     createMap();
 })();
