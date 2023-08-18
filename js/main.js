@@ -18,10 +18,10 @@
             maxZoom:17,
             minZoom:12
         });
-        
-        let basemap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        //set basemap tileset
+        let basemap = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         buffers = L.layerGroup().addTo(map);
@@ -112,13 +112,29 @@
                 })
                 //add geojson to map
                 stops = L.geoJson(geojson,{
-                    pointToLayer:function(layer, latlng){
-                        return L.marker(latlng);
+                    pointToLayer:function(feature, latlng){
+                        //set point styling
+                        let options = {
+                            radius:5,
+                            color:"black",
+                            opacity:setOpacity(feature.properties),
+                            fillColor:"black",
+                            fillOpacity:setOpacity(feature.properties)
+                        }
+                        //function to hide hidden stops
+                        function setOpacity(props){
+                            return props.hidden == "true" ? 0 : 0.6;
+                        }
+                        
+                        return L.circleMarker(latlng, options);
                     },
                     onEachFeature:function(feature, layer){
+                        //open modal if layer is not hidden
                         layer.on('click',function(){
-                            openModal(feature.properties)
-                            center = true;
+                            if (feature.properties.hidden != "true"){
+                                openModal(feature.properties)
+                                center = true;
+                            }
                         })
                     }
                 }).addTo(map);
@@ -144,7 +160,8 @@
                         //play audio
                         playAudio(layer.feature.properties.audio)
                         //open modal
-                        openModal(layer.feature.properties)
+                        if (layer.feature.properties.hidden != "true")
+                            openModal(layer.feature.properties)
                         //add feature to "played" list
                         played.push(layer.feature.properties.id)
                     }
@@ -221,7 +238,9 @@
     //function to deactivate audio element and reset button
     function stopAudio(){
         //remove audio element
-        audio.remove();
+        if (audio)
+            audio.remove();
+
         if (document.querySelector(".play"))
             document.querySelector(".play").remove();
         //set page state to inactive

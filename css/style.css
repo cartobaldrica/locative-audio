@@ -5,6 +5,14 @@ body{
     width:100vw;
     height:100vh;
 }
+button{
+    border:2px black solid;
+    background:rgba(255,255,255,0.7);
+    font-size:14pt !important;
+}
+button:hover{
+    background:rgba(0,0,0,0.3);
+}
 /*modal styling*/
 #title-container{
     padding-left:10px;
@@ -38,4 +46,5 @@ body{
     left:10px;
     z-index:400;
     font-size:20px;
+    font-weight:bold;
 }
