@@ -1,0 +1,36 @@
+{
+    "type": "FeatureCollection",
+    "name": "Sites",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "point": 1,
+                "visible":true,
+                "name":"Test 1"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -89.399840891001432,
+                    43.076034241575393
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "point": 2,
+                "visible":true,
+                "name":"Test 2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -89.37374,
+                    43.08719
+                ]
+            }
+        }
+    ]
+}
