@@ -1,4 +1,4 @@
 id,name,hidden,audio,lon,lat,text,image
-1,"Welcome to Locative Audio",false,"stop1.mp3",-89.399840891001432,43.076034241575393,"This is text about the first stop on the tour. It could be used to introduce the place, or the geographic context. This would also be a good opportunity to acknolwedge the authors of the tour.","stop1.jpg"
-2,"First Tour Stop",false,"stop2.mp3",-89.40107606831748,43.0758651703825,"This is text about the second stop of the tour. It could be about literally anything—old buildings, hidden infrastructure or knowledge, local curiousities, songs, folk stories, et cetera.","stop2.jpg"
-3,"Hidden Stop",true,"hidden-stop.mp3",-89.40055000481027,43.0758925837037,"This is a hidden tour stop. In other words, a point users won't be able to see on the map. It could be something like ambient sound, or narration.",""
+1,Welcome to Locative Audio,FALSE,stop1.mp3,-89.39984089,43.07603424,"This is text about the first stop on the tour. It could be used to introduce the place, or the geographic context. This would also be a good opportunity to acknolwedge the authors of the tour.",stop1.jpg
+2,First Tour Stop,FALSE,stop2.mp3,-89.40107607,43.07586517,"This is text about the second stop of the tour. It could be about literally anything—old buildings, hidden infrastructure or knowledge, local curiousities, songs, folk stories, et cetera.",stop2.jpg
+3,Hidden Stop,TRUE,hidden-stop.mp3,-89.40055,43.07589258,"This is a hidden tour stop. In other words, a point users won't be able to see on the map. It could be something like ambient sound, or narration.",

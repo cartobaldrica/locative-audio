@@ -123,7 +123,7 @@
                         }
                         //function to hide hidden stops
                         function setOpacity(props){
-                            return props.hidden == "true" ? 0 : 0.6;
+                            return props.hidden == "TRUE" ? 0 : 0.6;
                         }
                         
                         return L.circleMarker(latlng, options);
@@ -252,8 +252,6 @@
                 document.querySelector(".play").remove();
             //set page state to inactive
             active = false; 
-            //reset play button
-            document.querySelector("#play-audio").innerHTML = "Play Audio";
         }
     }
 
