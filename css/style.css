@@ -33,6 +33,7 @@ button:hover{
 #start{
     margin:auto;
 }
+
 /*modal styling*/
 #title-container{
     padding-left:10px;
@@ -55,6 +56,15 @@ button:hover{
 }
 #stop-text{
     font-size:20px;
+}
+#stop-footer{
+    display:block !important;
+}
+#prev{
+    float:left;
+}
+#next{
+    float:right;
 }
 /*center button*/
 #center{
