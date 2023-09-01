@@ -13,7 +13,26 @@
 
     </head>
     <body>
-        <!--modal-->
+        <!--splash screen-->
+        <div class="modal" id="splash-modal">
+            <div class="modal-dialog" id="splash-dialogue">
+                <div class="modal-content" id="splash-content">
+                    <div class="modal-header">
+                        <div class="col-md-6 offset-md-3 col-sm-12 col-12" id="splash-title-container">
+                            <h1 class="modal-title"></h1>
+                        </div>
+                    </div>
+                    <div class="modal-body col-md-6 offset-md-3 col-sm-12 col-12" id="splash-body">
+                        <h1>Welcome to a Locative Audio Tour!</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="start" class="btn btn-secondary" data-bs-dismiss="modal">Start Tour</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <!--stop modal-->
         <div class="modal" id="stop-modal">
             <div class="modal-dialog" id="stop-dialogue">
                 <div class="modal-content" id="stop-content">
@@ -22,11 +41,12 @@
                             <h1 class="modal-title" id="stop-title"></h1>
                             <button id="play-audio">Play Audio</button>
                         </div>
-                        <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" id="x" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body col-md-6 offset-md-3 col-sm-12 col-12" id="stop-body"></div>
                     <div class="modal-footer">
-                        <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="prev" class="btn btn-secondary close" data-bs-dismiss="modal">Prev</button>
+                        <button type="button" id="next" class="btn btn-secondary close" data-bs-dismiss="modal">Next</button>
                     </div>
                 </div>
             </div>
@@ -34,7 +54,7 @@
         <!--map-->
         <div id="map"></div>
         <!--center button-->
-        <button id="center">Center Map</button>
+        <button id="center">Center</button>
         <!--external scripts-->
         <script type="text/javascript" src="lib/leaflet/leaflet.js"></script>
         <script type="text/javascript" src="lib/papaparse.js"></script>
