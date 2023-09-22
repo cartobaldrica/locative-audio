@@ -25,13 +25,16 @@ button:hover{
 }
 #splash-body{
     height:100%;
-    overflow:scroll;
+    padding-bottom:20px;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
 }
 #splash-content p{
     font-size:18px;
-}
+    }
 #start{
     margin:auto;
+    display:block;
 }
 
 /*modal styling*/
